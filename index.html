@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transforming Youth Into Changemakers - Impact Report 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,875 +13,1290 @@
         }
         
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #7c3aed;
-            --accent-color: #f59e0b;
-            --success-color: #10b981;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --bg-white: #ffffff;
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text: #334155;
+            --text-light: #64748b;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
+            color: var(--text);
+            background-color: #fafbfc;
+            overflow-x: hidden;
         }
         
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection */
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1000px;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            animation: slideUp 1s ease-out;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+        
+        .hero-stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-stat:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
         
-        /* Header Styles */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+        
+        /* Executive Summary */
+        .executive-summary {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: -100px auto 4rem;
+            position: relative;
+            z-index: 20;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .key-achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .achievement-card {
+            background: var(--gradient-1);
+            border-radius: 20px;
+            padding: 2rem;
             color: white;
-            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:nth-child(2) { background: var(--gradient-2); }
+        .achievement-card:nth-child(3) { background: var(--gradient-3); }
+        .achievement-card:nth-child(4) { background: var(--gradient-4); }
+        .achievement-card:nth-child(5) { background: var(--gradient-1); }
+        .achievement-card:nth-child(6) { background: var(--gradient-2); }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Program Cards */
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .program-header {
+            background: var(--gradient-1);
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .program-card:nth-child(2) .program-header { background: var(--gradient-2); }
+        .program-card:nth-child(3) .program-header { background: var(--gradient-3); }
+        
+        .program-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 4rem;
+            font-weight: 900;
+            opacity: 0.2;
+            color: white;
+        }
+        
+        .program-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .program-meta {
+            display: flex;
+            gap: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+        
+        .program-body {
+            padding: 2rem;
+        }
+        
+        .program-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+        
+        .program-stat {
             text-align: center;
+        }
+        
+        .program-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .program-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .feature-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        /* Quote Blocks */
+        .quote {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 80px;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-author {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        
+        /* Data Visualization */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .data-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .header::before {
+        .data-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+        
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .data-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .data-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .data-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .data-change {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Systems Visualization */
+        .systems-visualization {
+            position: relative;
+            padding: 4rem 0;
+            margin: 3rem 0;
+        }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .system-node {
+            background: white;
+            border: 3px solid transparent;
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .system-node:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+        
+        .system-node::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--gradient-1);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .system-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .system-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .system-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        .system-stat strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        /* Solutions Section */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .solution-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .solution-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .solution-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .solution-card:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-description {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .solution-impact {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-1);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 3rem;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-dark);
+            border-radius: 30px;
+            padding: 5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin: 4rem 0;
+        }
+        
+        .cta-section::before {
             content: '';
             position: absolute;
             top: -50%;
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.3; }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
-        .header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 1rem;
             position: relative;
             z-index: 1;
         }
         
-        .header .subtitle {
-            font-size: 1.5em;
-            opacity: 0.9;
+        .cta-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
             position: relative;
             z-index: 1;
-        }
-        
-        /* Executive Summary */
-        .executive-summary {
-            background: white;
-            padding: 40px;
-            margin: -40px auto 40px;
-            max-width: 900px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .key-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .metric-card {
-            background: var(--bg-light);
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .metric-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .metric-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: var(--primary-color);
-            line-height: 1;
-        }
-        
-        .metric-label {
-            color: var(--text-light);
-            margin-top: 5px;
-        }
-        
-        /* Section Styles */
-        .section {
-            background: white;
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-        
-        .section h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 2em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section h3 {
-            color: var(--secondary-color);
-            margin: 20px 0 15px;
-            font-size: 1.4em;
-        }
-        
-        /* Program Cards */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .program-card {
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-            padding: 30px;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .program-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-        }
-        
-        .program-stats {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 8px;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            color: var(--text-light);
-        }
-        
-        /* Achievement List */
-        .achievement-list {
-            list-style: none;
-            margin: 15px 0;
-        }
-        
-        .achievement-list li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
-        }
-        
-        .achievement-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success-color);
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        
-        /* Data Tables */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        .data-table th,
-        .data-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .data-table th {
-            background: var(--bg-light);
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        
-        .data-table tr:hover {
-            background: #f9fafb;
-        }
-        
-        /* Systems Visualization */
-        .systems-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .system-card {
-            background: #f9fafb;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 25px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .system-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .system-number {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background: var(--primary-color);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        /* Quote Blocks */
-        .quote-block {
-            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
-            padding: 25px;
-            border-left: 4px solid var(--secondary-color);
-            margin: 20px 0;
-            border-radius: 8px;
-            font-style: italic;
-        }
-        
-        .quote-author {
-            margin-top: 10px;
-            font-style: normal;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-        
-        /* Charts */
-        .chart-container {
-            margin: 30px 0;
-            padding: 20px;
-            background: #f9fafb;
-            border-radius: 8px;
-        }
-        
-        .bar-chart {
-            display: flex;
-            align-items: flex-end;
-            height: 200px;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .bar {
-            flex: 1;
-            background: linear-gradient(to top, var(--primary-color), var(--accent-color));
-            border-radius: 4px 4px 0 0;
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .bar:hover {
-            transform: scaleY(1.05);
-        }
-        
-        .bar-label {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9em;
-            white-space: nowrap;
-        }
-        
-        .bar-value {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        /* Progress Indicators */
-        .progress-container {
-            margin: 20px 0;
-        }
-        
-        .progress-bar {
-            background: #e5e7eb;
-            border-radius: 10px;
-            height: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .progress-fill {
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1s ease-out;
-            position: relative;
-        }
-        
-        .progress-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        
-        /* Call to Action */
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 60px 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
         }
         
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 30px;
+            position: relative;
+            z-index: 1;
         }
         
         .cta-button {
-            background: white;
-            color: var(--primary-color);
-            padding: 15px 30px;
-            border-radius: 8px;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-weight: 600;
             text-decoration: none;
-            font-weight: bold;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .cta-button:hover {
+        .cta-button-primary {
+            background: white;
+            color: var(--dark);
+        }
+        
+        .cta-button-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .cta-button-secondary:hover {
+            background: white;
+            color: var(--dark);
         }
         
         /* Footer */
         .footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
             text-align: center;
-            padding: 40px;
-            color: var(--text-light);
         }
         
-        .footer .tagline {
-            font-size: 1.2em;
+        .footer-content {
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-tagline {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
             font-style: italic;
-            color: var(--secondary-color);
-            margin-top: 20px;
+            margin-top: 2rem;
+        }
+        
+        .footer-meta {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
-            .metric-value {
-                font-size: 2em;
+            .executive-summary {
+                padding: 2rem;
+                margin: -50px 1rem 2rem;
             }
             
-            .programs-grid {
-                grid-template-columns: 1fr;
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 20px !important;
+                text-align: left !important;
+            }
+            
+            .timeline-marker {
+                left: 10px !important;
+                right: auto !important;
             }
         }
         
-        /* Print Styles */
-        @media print {
-            .header {
-                background: none;
-                color: black;
-            }
-            
-            .section {
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-animation {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(99, 102, 241, 0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-animation"></div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
             <h1>TRANSFORMING YOUTH INTO CHANGEMAKERS</h1>
             <p class="subtitle">Impact Report: Club Stride Social Impact Program 2025</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-target="100">0</div>
+                    <div class="hero-stat-label">% Retention Rate</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-target="23">0</div>
+                    <div class="hero-stat-label">Youth Leaders</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-target="138">0</div>
+                    <div class="hero-stat-label">Voices Elevated</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-target="250">0</div>
+                    <div class="hero-stat-label">% Target Exceeded</div>
+                </div>
+            </div>
         </div>
-    </header>
+        
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </section>
     
     <!-- Executive Summary -->
     <div class="container">
-        <div class="executive-summary">
-            <h2>Executive Summary: The Power of Youth-Led Change</h2>
-            <p>In 2025, Vallejo witnessed an unprecedented transformation as 23 youth advocates across three interconnected programs tackled the community's most pressing health challenges. Through innovative approaches combining participatory research, peer education, and AI-enhanced advocacy, these young leaders achieved remarkable results:</p>
+        <div class="executive-summary animate-on-scroll">
+            <h2 class="section-title">Executive Summary</h2>
+            <p class="section-subtitle">In 2025, Vallejo witnessed an unprecedented transformation as 23 youth advocates across three interconnected programs tackled the community's most pressing health challenges.</p>
             
-            <div class="key-metrics">
-                <div class="metric-card">
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Program Retention<br>Every single youth completed</div>
+            <div class="key-achievements">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎯</div>
+                    <div class="achievement-value">100%</div>
+                    <div class="achievement-label">Program Retention<br>Every single youth completed</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">138+</div>
-                    <div class="metric-label">Community Voices<br>Direct research engagement</div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎤</div>
+                    <div class="achievement-value">138+</div>
+                    <div class="achievement-label">Community Voices<br>Direct research engagement</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">8</div>
-                    <div class="metric-label">Sustainable Partnerships<br>Long-term commitments</div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🤝</div>
+                    <div class="achievement-value">8</div>
+                    <div class="achievement-label">Sustainable Partnerships<br>Long-term commitments</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">5</div>
-                    <div class="metric-label">Systemic Issues<br>Identified & addressed</div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🔍</div>
+                    <div class="achievement-value">5</div>
+                    <div class="achievement-label">Systemic Issues<br>Identified & addressed</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">250%</div>
-                    <div class="metric-label">Campaign Target Exceeded<br>7 initiatives vs. 2 planned</div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🚀</div>
+                    <div class="achievement-value">250%</div>
+                    <div class="achievement-label">Campaign Target Exceeded<br>7 initiatives vs. 2 planned</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Future Commitment<br>All want to continue</div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">💫</div>
+                    <div class="achievement-value">100%</div>
+                    <div class="achievement-label">Future Commitment<br>All want to continue</div>
                 </div>
             </div>
         </div>
     </div>
     
     <!-- Three Programs Section -->
-    <div class="container">
-        <section class="section">
-            <h2>🚀 The Triple Impact: How Three Programs Created One Movement</h2>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">The Triple Impact</h2>
+            <p class="section-subtitle animate-on-scroll">How Three Programs Created One Movement</p>
             
-            <div class="programs-grid">
+            <div class="programs-container">
                 <!-- Program 1 -->
-                <div class="program-card">
-                    <h3>1. MIT Youth Advocacy Program (YPAR with AI)</h3>
-                    <div class="program-stats">
-                        <div class="stat">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Researchers</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">8</div>
-                            <div class="stat-label">Weeks</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">97.6%</div>
-                            <div class="stat-label">Attendance</div>
+                <div class="program-card animate-on-scroll">
+                    <div class="program-header">
+                        <span class="program-number">1</span>
+                        <h3 class="program-title">MIT Youth Advocacy Program</h3>
+                        <div class="program-meta">
+                            <span>YPAR with AI</span>
+                            <span>8 Weeks</span>
                         </div>
                     </div>
-                    <p>Young researchers uncovered interconnected systems perpetuating youth struggles using AI-enhanced research methods:</p>
-                    <ul class="achievement-list">
-                        <li><strong>Hunger-Stress-Risk Syndemic:</strong> 75% food insecurity linked to stress</li>
-                        <li><strong>Infrastructure Gaps:</strong> 42% rate internet as "terrible"</li>
-                        <li><strong>Bureaucracy & ID Anxiety:</strong> Complex paperwork barriers</li>
-                        <li><strong>Mobility Trap:</strong> 46% cite transport as #1 barrier</li>
-                        <li><strong>Safety & Stigma Loop:</strong> 80% feel unsafe in shelters</li>
-                    </ul>
-                    <p><strong>Innovation:</strong> First youth program to integrate AI tools, achieving 40% efficiency gains</p>
+                    <div class="program-body">
+                        <div class="program-stats">
+                            <div class="program-stat">
+                                <div class="program-stat-value">5</div>
+                                <div class="program-stat-label">Researchers</div>
+                            </div>
+                            <div class="program-stat">
+                                <div class="program-stat-value">97.6%</div>
+                                <div class="program-stat-label">Attendance</div>
+                            </div>
+                            <div class="program-stat">
+                                <div class="program-stat-value">40%</div>
+                                <div class="program-stat-label">AI Efficiency</div>
+                            </div>
+                        </div>
+                        <p>Young researchers uncovered interconnected systems perpetuating youth struggles using AI-enhanced research methods.</p>
+                        <ul class="feature-list">
+                            <li><strong>Hunger-Stress-Risk Syndemic:</strong> 75% food insecurity linked to stress</li>
+                            <li><strong>Infrastructure Gaps:</strong> 42% rate internet as "terrible"</li>
+                            <li><strong>Bureaucracy & ID Anxiety:</strong> Complex paperwork barriers</li>
+                            <li><strong>Mobility Trap:</strong> 46% cite transport as #1 barrier</li>
+                            <li><strong>Safety & Stigma Loop:</strong> 80% feel unsafe in shelters</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <!-- Program 2 -->
-                <div class="program-card">
-                    <h3>2. Health Amplified Program</h3>
-                    <div class="program-stats">
-                        <div class="stat">
-                            <div class="stat-value">12</div>
-                            <div class="stat-label">Advocates</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">Weeks</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">91.7%</div>
-                            <div class="stat-label">Attendance</div>
+                <div class="program-card animate-on-scroll">
+                    <div class="program-header">
+                        <span class="program-number">2</span>
+                        <h3 class="program-title">Health Amplified Program</h3>
+                        <div class="program-meta">
+                            <span>Public Health Advocates</span>
+                            <span>6 Weeks</span>
                         </div>
                     </div>
-                    <p>Youth became "systems change architects" with proper frameworks:</p>
-                    <ul class="achievement-list">
-                        <li><strong>Knowledge Explosion:</strong> STI prevention grew to 91% proficiency</li>
-                        <li><strong>Confidence Transformation:</strong> Mental health advocacy up 67%</li>
-                        <li><strong>Peer Impact:</strong> 47+ documented conversations</li>
-                        <li><strong>Digital Reach:</strong> YouTube livestream expanded audience</li>
-                    </ul>
-                    <div class="quote-block">
-                        "I was surprised that my peers could relate so much. After Health Amplified, I will use the skills to better understand struggles of others."
-                        <div class="quote-author">- Youth Participant</div>
+                    <div class="program-body">
+                        <div class="program-stats">
+                            <div class="program-stat">
+                                <div class="program-stat-value">12</div>
+                                <div class="program-stat-label">Advocates</div>
+                            </div>
+                            <div class="program-stat">
+                                <div class="program-stat-value">91.7%</div>
+                                <div class="program-stat-label">Attendance</div>
+                            </div>
+                            <div class="program-stat">
+                                <div class="program-stat-value">47+</div>
+                                <div class="program-stat-label">Peer Talks</div>
+                            </div>
+                        </div>
+                        <p>Youth became "systems change architects" with proper frameworks.</p>
+                        <ul class="feature-list">
+                            <li><strong>Knowledge Explosion:</strong> STI prevention grew to 91% proficiency</li>
+                            <li><strong>Confidence Transformation:</strong> Mental health advocacy up 67%</li>
+                            <li><strong>Peer Impact:</strong> 47+ documented conversations</li>
+                            <li><strong>Digital Reach:</strong> YouTube livestream expanded audience</li>
+                        </ul>
+                        <div class="quote">
+                            "I was surprised that my peers could relate so much. After Health Amplified, I will use the skills to better understand struggles of others."
+                            <div class="quote-author">— Youth Participant</div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Program 3 -->
-                <div class="program-card">
-                    <h3>3. Club Stride Youth Advocacy Program</h3>
-                    <div class="program-stats">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">Educators</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Months</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">96%</div>
-                            <div class="stat-label">Attendance</div>
+                <div class="program-card animate-on-scroll">
+                    <div class="program-header">
+                        <span class="program-number">3</span>
+                        <h3 class="program-title">Club Stride Youth Advocacy</h3>
+                        <div class="program-meta">
+                            <span>Peer Health Educators</span>
+                            <span>5 Months</span>
                         </div>
                     </div>
-                    <p>Transformed students into certified Peer Health Educators:</p>
-                    <ul class="achievement-list">
-                        <li><strong>Skill Growth:</strong> 29% average improvement</li>
-                        <li><strong>Community Events:</strong> 5 executed vs. 1 planned</li>
-                        <li><strong>Partnerships:</strong> 8 established vs. 2 targeted</li>
-                        <li><strong>Career Readiness:</strong> University-level presentations</li>
-                    </ul>
-                    <div class="quote-block">
-                        "I hope I can show others that it's not scary to speak up for your community."
-                        <div class="quote-author">- Ricardo Morales</div>
+                    <div class="program-body">
+                        <div class="program-stats">
+                            <div class="program-stat">
+                                <div class="program-stat-value">6</div>
+                                <div class="program-stat-label">Educators</div>
+                            </div>
+                            <div class="program-stat">
+                                <div class="program-stat-value">96%</div>
+                                <div class="program-stat-label">Attendance</div>
+                            </div>
+                            <div class="program-stat">
+                                <div class="program-stat-value">29%</div>
+                                <div class="program-stat-label">Skill Growth</div>
+                            </div>
+                        </div>
+                        <p>Transformed students into certified Peer Health Educators.</p>
+                        <ul class="feature-list">
+                            <li><strong>Skill Growth:</strong> 29% average improvement</li>
+                            <li><strong>Community Events:</strong> 5 executed vs. 1 planned</li>
+                            <li><strong>Partnerships:</strong> 8 established vs. 2 targeted</li>
+                            <li><strong>Career Readiness:</strong> University-level presentations</li>
+                        </ul>
+                        <div class="quote">
+                            "I hope I can show others that it's not scary to speak up for your community."
+                            <div class="quote-author">— Ricardo Morales</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
     
-    <!-- Impact Metrics Section -->
-    <div class="container">
-        <section class="section">
-            <h2>📊 By The Numbers: Collective Impact Measurement</h2>
+    <!-- Impact Metrics -->
+    <section class="section" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">By The Numbers</h2>
+            <p class="section-subtitle animate-on-scroll">Collective Impact Measurement</p>
             
-            <h3>Youth Development Metrics</h3>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>Target</th>
-                        <th>Achieved</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Program Completion</td>
-                        <td>85%</td>
-                        <td><strong>100%</strong></td>
-                        <td>Every youth finished strong</td>
-                    </tr>
-                    <tr>
-                        <td>Skill Mastery</td>
-                        <td>75%</td>
-                        <td><strong>85-92%</strong></td>
-                        <td>College-ready competencies</td>
-                    </tr>
-                    <tr>
-                        <td>Confidence Growth</td>
-                        <td>60%</td>
-                        <td><strong>67-90%</strong></td>
-                        <td>Empowered advocates</td>
-                    </tr>
-                    <tr>
-                        <td>Peer Teaching</td>
-                        <td>50%</td>
-                        <td><strong>100%</strong></td>
-                        <td>All became mentors</td>
-                    </tr>
-                    <tr>
-                        <td>Future Commitment</td>
-                        <td>50%</td>
-                        <td><strong>100%</strong></td>
-                        <td>Sustainable leadership</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>Community Impact Visualization</h3>
-            <div class="chart-container">
-                <h4>Program Achievement vs. Targets</h4>
-                <div class="bar-chart">
-                    <div class="bar" style="height: 100%">
-                        <span class="bar-value">100%</span>
-                        <span class="bar-label">Retention</span>
-                    </div>
-                    <div class="bar" style="height: 90%">
-                        <span class="bar-value">90%</span>
-                        <span class="bar-label">Skills</span>
-                    </div>
-                    <div class="bar" style="height: 95%">
-                        <span class="bar-value">138+</span>
-                        <span class="bar-label">Surveys</span>
-                    </div>
-                    <div class="bar" style="height: 85%">
-                        <span class="bar-value">250%</span>
-                        <span class="bar-label">Campaigns</span>
-                    </div>
-                    <div class="bar" style="height: 100%">
-                        <span class="bar-value">100%</span>
-                        <span class="bar-label">Future</span>
-                    </div>
+            <div class="data-grid">
+                <div class="data-card animate-on-scroll">
+                    <div class="data-icon">📈</div>
+                    <div class="data-value">100%</div>
+                    <div class="data-label">Program Completion</div>
+                    <div class="data-change">+18% vs. target</div>
+                </div>
+                <div class="data-card animate-on-scroll">
+                    <div class="data-icon">🎓</div>
+                    <div class="data-value">85-92%</div>
+                    <div class="data-label">Skill Mastery</div>
+                    <div class="data-change">College-ready</div>
+                </div>
+                <div class="data-card animate-on-scroll">
+                    <div class="data-icon">💪</div>
+                    <div class="data-value">67-90%</div>
+                    <div class="data-label">Confidence Growth</div>
+                    <div class="data-change">Empowered advocates</div>
+                </div>
+                <div class="data-card animate-on-scroll">
+                    <div class="data-icon">👥</div>
+                    <div class="data-value">100%</div>
+                    <div class="data-label">Peer Teaching</div>
+                    <div class="data-change">All became mentors</div>
+                </div>
+                <div class="data-card animate-on-scroll">
+                    <div class="data-icon">🔄</div>
+                    <div class="data-value">100%</div>
+                    <div class="data-label">Future Commitment</div>
+                    <div class="data-change">Sustainable leadership</div>
+                </div>
+                <div class="data-card animate-on-scroll">
+                    <div class="data-icon">🌟</div>
+                    <div class="data-value">500+</div>
+                    <div class="data-label">Youth Reached</div>
+                    <div class="data-change">Entire grade levels</div>
                 </div>
             </div>
-            
-            <h3>Systems Change Progress</h3>
-            <div class="progress-container">
-                <p><strong>Before:</strong> Youth saw isolated problems requiring individual solutions</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 100%">
-                        <span class="progress-text">100% Transformed</span>
-                    </div>
-                </div>
-                <p><strong>After:</strong> Youth identify and address interconnected systems</p>
-            </div>
-        </section>
-    </div>
+        </div>
+    </section>
     
     <!-- Five Pressure Systems -->
-    <div class="container">
-        <section class="section">
-            <h2>🔍 The Five Pressure Systems: Youth Research That Changes Everything</h2>
-            <p>Through comprehensive community research, youth researchers discovered that Vallejo's challenges aren't isolated issues but interconnected systems that reinforce each other:</p>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">The Five Pressure Systems</h2>
+            <p class="section-subtitle animate-on-scroll">Youth Research That Changes Everything</p>
             
-            <div class="systems-container">
-                <div class="system-card">
-                    <span class="system-number">1</span>
-                    <h4>The Hunger-Stress-Risk Connection</h4>
-                    <ul>
-                        <li><strong>75% food insecurity</strong> (vs. 48% CA average)</li>
-                        <li>Food-insecure youth: <strong>1.5-1.6x higher STI risk</strong></li>
-                        <li>Direct link: hunger → anxiety → academics</li>
-                    </ul>
+            <div class="systems-visualization">
+                <div class="systems-grid">
+                    <div class="system-node animate-on-scroll" data-number="1">
+                        <h4 class="system-title">The Hunger-Stress-Risk Connection</h4>
+                        <p>Direct correlation between food insecurity and youth risk behaviors.</p>
+                        <div class="system-stats">
+                            <div class="system-stat">📊 <strong>75%</strong> food insecurity rate</div>
+                            <div class="system-stat">⚠️ <strong>1.5-1.6x</strong> higher STI risk</div>
+                            <div class="system-stat">🔗 Hunger → Anxiety → Academics</div>
+                        </div>
+                    </div>
+                    
+                    <div class="system-node animate-on-scroll" data-number="2">
+                        <h4 class="system-title">Digital Divide as Health Barrier</h4>
+                        <p>Poor internet access creates cascading disadvantages.</p>
+                        <div class="system-stats">
+                            <div class="system-stat">📶 <strong>42%</strong> rate internet "terrible"</div>
+                            <div class="system-stat">📚 Affects homework completion</div>
+                            <div class="system-stat">🏥 Blocks telehealth access</div>
+                        </div>
+                    </div>
+                    
+                    <div class="system-node animate-on-scroll" data-number="3">
+                        <h4 class="system-title">Paperwork Paralysis</h4>
+                        <p>Complex forms create self-reinforcing avoidance.</p>
+                        <div class="system-stats">
+                            <div class="system-stat">📝 SSN confusion blocks FAFSA</div>
+                            <div class="system-stat">🚫 Prevents service access</div>
+                            <div class="system-stat">🔄 Creates avoidance patterns</div>
+                        </div>
+                    </div>
+                    
+                    <div class="system-node animate-on-scroll" data-number="4">
+                        <h4 class="system-title">Transportation Trap</h4>
+                        <p>Mobility barriers compound all other challenges.</p>
+                        <div class="system-stats">
+                            <div class="system-stat">🚌 <strong>46%</strong> cite as #1 barrier</div>
+                            <div class="system-stat">🏪 15,000+ far from groceries</div>
+                            <div class="system-stat">💼 Affects employment access</div>
+                        </div>
+                    </div>
+                    
+                    <div class="system-node animate-on-scroll" data-number="5">
+                        <h4 class="system-title">Stigma & Safety Spiral</h4>
+                        <p>Fear and shame prevent help-seeking behaviors.</p>
+                        <div class="system-stats">
+                            <div class="system-stat">🏠 <strong>80%</strong> feel unsafe in shelters</div>
+                            <div class="system-stat">🏥 Only <strong>1 in 5</strong> get STI testing</div>
+                            <div class="system-stat">💚 91% want trauma-informed care</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Solutions -->
+    <section class="section" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Youth-Designed Solutions</h2>
+            <p class="section-subtitle animate-on-scroll">Breaking the Cycles Through Innovation</p>
+            
+            <div class="solutions-grid">
+                <div class="solution-card animate-on-scroll">
+                    <div class="solution-icon">🎯</div>
+                    <h3 class="solution-title">Service Bundling</h3>
+                    <p class="solution-description">Pop-up clinics at food banks offering STI testing + CalFresh signup + WiFi hotspots</p>
+                    <div class="solution-impact">
+                        <strong>Impact:</strong> Addresses Systems 1, 2, and 3 simultaneously
+                    </div>
                 </div>
                 
-                <div class="system-card">
-                    <span class="system-number">2</span>
-                    <h4>Digital Divide as Health Barrier</h4>
-                    <ul>
-                        <li><strong>42%</strong> rate internet as "terrible"</li>
-                        <li>Affects homework, college apps, telehealth</li>
-                        <li>Creates cascading disadvantages</li>
-                    </ul>
+                <div class="solution-card animate-on-scroll">
+                    <div class="solution-icon">🤝</div>
+                    <h3 class="solution-title">Peer Navigators</h3>
+                    <p class="solution-description">Youth trained to help peers with FAFSA, shelter intake, and benefit applications</p>
+                    <div class="solution-impact">
+                        <strong>Impact:</strong> 42% of graduates volunteering as navigators
+                    </div>
                 </div>
                 
-                <div class="system-card">
-                    <span class="system-number">3</span>
-                    <h4>Paperwork Paralysis</h4>
-                    <ul>
-                        <li>SSN confusion blocks FAFSA</li>
-                        <li>Complex forms prevent service access</li>
-                        <li>Self-reinforcing avoidance patterns</li>
-                    </ul>
+                <div class="solution-card animate-on-scroll">
+                    <div class="solution-icon">🚐</div>
+                    <h3 class="solution-title">Mobile Services</h3>
+                    <p class="solution-description">Bring services directly to youth instead of requiring transportation</p>
+                    <div class="solution-impact">
+                        <strong>Impact:</strong> Directly disrupts System 4 barriers
+                    </div>
                 </div>
                 
-                <div class="system-card">
-                    <span class="system-number">4</span>
-                    <h4>Transportation Trap</h4>
-                    <ul>
-                        <li><strong>46%</strong> cite transport as #1 barrier</li>
-                        <li>15,000+ residents >1 mile from groceries</li>
-                        <li>Compounds health/education/employment</li>
-                    </ul>
+                <div class="solution-card animate-on-scroll">
+                    <div class="solution-icon">💚</div>
+                    <h3 class="solution-title">Stigma-Free Zones</h3>
+                    <p class="solution-description">Youth-designed safe spaces with peer support and normalized dialogue</p>
+                    <div class="solution-impact">
+                        <strong>Impact:</strong> "It's okay to not be okay" culture shift
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Timeline -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">The Journey Continues</h2>
+            <p class="section-subtitle animate-on-scroll">Building Sustainable Impact</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Immediate</div>
+                        <h4>100% Continuation</h4>
+                        <p>All participants planning to continue in advanced programs</p>
+                    </div>
                 </div>
                 
-                <div class="system-card">
-                    <span class="system-number">5</span>
-                    <h4>Stigma & Safety Spiral</h4>
-                    <ul>
-                        <li><strong>80%</strong> feel unsafe in shelters</li>
-                        <li>Only <strong>1 in 5</strong> teens get STI testing</li>
-                        <li>91% prefer trauma-informed spaces</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Solutions Section -->
-    <div class="container">
-        <section class="section">
-            <h2>💡 Youth-Designed Solutions: Breaking the Cycles</h2>
-            
-            <h3>Leverage Moves (High-Impact Interventions)</h3>
-            
-            <div class="achievement-list">
-                <li>
-                    <strong>Service Bundling at Intersection Points</strong>
-                    <p>Pop-up clinics at food banks offering: STI testing + CalFresh signup + WiFi hotspots. Addresses Systems 1, 2, and 3 simultaneously.</p>
-                </li>
-                <li>
-                    <strong>Peer Bureaucracy Navigators</strong>
-                    <p>Youth trained to help peers with FAFSA, shelter intake, benefits. Breaks System 3 while building agency. 42% of graduates volunteering.</p>
-                </li>
-                <li>
-                    <strong>Mobile Service Delivery</strong>
-                    <p>Bring services to youth vs. requiring transportation. Directly disrupts System 4.</p>
-                </li>
-                <li>
-                    <strong>Stigma-Free Zones</strong>
-                    <p>Youth-designed safe spaces with peer support. "It's okay to not be okay" messaging.</p>
-                </li>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Innovation Spotlight -->
-    <div class="container">
-        <section class="section">
-            <h2>🤖 Innovation Spotlight: AI as a Tool for Youth Empowerment</h2>
-            
-            <p>The MIT Youth Advocacy Program pioneered AI integration, proving technology can enhance rather than replace youth voice:</p>
-            
-            <div class="key-metrics" style="margin-top: 30px;">
-                <div class="metric-card">
-                    <div class="metric-value">40%</div>
-                    <div class="metric-label">Reduction in survey design time</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value">60%</div>
-                    <div class="metric-label">Faster qualitative data coding</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value">3x</div>
-                    <div class="metric-label">More patterns identified</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Youth gained AI literacy</div>
-                </div>
-            </div>
-            
-            <div class="quote-block">
-                "AI tools are most effective when combined with critical thinking and cultural knowledge that only youth from the community possess."
-                <div class="quote-author">- Program Insight</div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Sustainability Section -->
-    <div class="container">
-        <section class="section">
-            <h2>🌱 Sustainability: The Movement Continues</h2>
-            
-            <div class="programs-grid">
-                <div style="background: #f3f4f6; padding: 25px; border-radius: 12px;">
-                    <h3>Immediate Next Steps</h3>
-                    <ul class="achievement-list">
-                        <li><strong>100%</strong> planning to continue in advanced programs</li>
-                        <li><strong>42%</strong> volunteering as peer mentors</li>
-                        <li><strong>60%</strong> pursuing public health careers</li>
-                        <li><strong>8 partners</strong> committed to ongoing support</li>
-                    </ul>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Short-term</div>
+                        <h4>Peer Mentorship</h4>
+                        <p>42% volunteering as mentors for next cohort</p>
+                    </div>
                 </div>
                 
-                <div style="background: #f3f4f6; padding: 25px; border-radius: 12px;">
-                    <h3>The Multiplier Effect</h3>
-                    <p>Each youth advocate commits to recruiting 1-3 friends, creating exponential growth. With materials designed for continued circulation and digital content providing unlimited reach, the initial investment of training 23 youth will impact thousands.</p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Medium-term</div>
+                        <h4>Career Pathways</h4>
+                        <p>60% pursuing public health/social impact careers</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Long-term</div>
+                        <h4>Systems Change</h4>
+                        <p>Youth-led frameworks integrated across 4 schools</p>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
     
-    <!-- Youth Voices -->
-    <div class="container">
-        <section class="section">
-            <h2>🎤 Youth Voices: The Real Measure of Success</h2>
-            
-            <div class="quote-block">
-                "We're not just collecting data—we're telling our community's story in a way that makes people listen and act."
-                <div class="quote-author">- Cristian (MIT YPAR)</div>
-            </div>
-            
-            <div class="quote-block">
-                "I know how to start a school club now. We're going to keep this going."
-                <div class="quote-author">- Kaida (Health Amplified)</div>
-            </div>
-            
-            <div class="quote-block">
-                "My peers could relate so much to what we shared. That's when I knew we were making a difference."
-                <div class="quote-author">- Fiza (Health Amplified)</div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Conclusion -->
-    <div class="container">
-        <section class="section">
-            <h2>🎯 Conclusion: Youth as Systems Change Architects</h2>
-            
-            <p>These programs prove a fundamental truth: when given proper tools, training, and trust, youth don't just participate in change—they architect it. The 23 young leaders across these programs didn't simply learn about community issues; they:</p>
-            
-            <ul class="achievement-list">
-                <li>Uncovered root causes through sophisticated research</li>
-                <li>Designed culturally relevant solutions</li>
-                <li>Built sustainable systems for continued impact</li>
-                <li>Inspired 100% of their peers to continue the work</li>
-            </ul>
-            
-            <p>The convergence of food insecurity (75%), elevated STI rates (nearly double state average), and widespread mental health challenges demanded innovative responses. These youth delivered, creating frameworks that address interconnected challenges through peer support, technological innovation, and systemic thinking.</p>
-            
-            <p><strong>Most remarkably, every single participant wants to continue.</strong> This 100% commitment rate—unprecedented in youth programming—demonstrates that when young people see their power to create change, they embrace it fully.</p>
-            
-            <div style="background: #ede9fe; padding: 30px; border-radius: 12px; margin-top: 30px; text-align: center;">
-                <p style="font-size: 1.2em; line-height: 1.8;">
-                    <strong>The future of Vallejo's health equity lies not in adult-designed interventions, but in the capable hands of youth who understand their community's challenges because they live them—and who possess the tools, confidence, and networks to transform them.</strong>
-                </p>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Call to Action -->
+    <!-- CTA Section -->
     <div class="container">
         <div class="cta-section">
-            <h2>Support These Youth Changemakers</h2>
-            <p>Join us in amplifying youth voices and creating lasting change</p>
+            <h2 class="cta-title">Support Youth Changemakers</h2>
+            <p class="cta-subtitle">Join us in amplifying youth voices and creating lasting change</p>
             
             <div class="cta-buttons">
-                <a href="#" class="cta-button">Fund Youth Programs</a>
-                <a href="#" class="cta-button">Partner With Us</a>
-                <a href="#" class="cta-button">Amplify Youth Research</a>
-                <a href="#" class="cta-button">Trust Youth Leadership</a>
+                <a href="https://www.clubstride.org/" class="cta-button cta-button-primary" target="_blank">
+                    <span>Fund Youth Programs</span>
+                    <span>→</span>
+                </a>
+                <a href="https://www.clubstride.org/" class="cta-button cta-button-secondary" target="_blank">
+                    <span>Partner With Us</span>
+                </a>
+                <a href="https://www.clubstride.org/" class="cta-button cta-button-secondary" target="_blank">
+                    <span>Amplify Youth Research</span>
+                </a>
+                <a href="https://www.clubstride.org/" class="cta-button cta-button-secondary" target="_blank">
+                    <span>Trust Youth Leadership</span>
+                </a>
             </div>
         </div>
     </div>
@@ -888,62 +1304,106 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p><strong>Report Prepared By:</strong> Youth Advocacy Collective</p>
-            <p><strong>Date:</strong> June 2025</p>
-            <p><strong>Location:</strong> Vallejo, California</p>
-            <p class="tagline">"Nothing about us without us—and everything about us, led by us."</p>
+            <div class="footer-content">
+                <div class="footer-logo">Youth Advocacy Collective</div>
+                <p>Transforming communities through youth leadership</p>
+                <p class="footer-tagline">"Nothing about us without us—and everything about us, led by us."</p>
+            </div>
+            <div class="footer-meta">
+                <p>Report Prepared June 2025 | Vallejo, California</p>
+            </div>
         </div>
     </footer>
     
     <script>
-        // Animate progress bars on scroll
+        // Hide loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 500);
+        });
+        
+        // Animate numbers
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.textContent = current;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    element.textContent = end;
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+        
+        // Initialize counter animations
+        const counters = document.querySelectorAll('[data-target]');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    animateValue(entry.target, 0, target, 2000);
+                }
+            });
+        }, observerOptions);
+        
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+        
+        // Animate on scroll
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.progress-fill, .bar');
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const windowHeight = window.innerHeight;
             
             elements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    element.style.animation = 'none';
-                    setTimeout(() => {
-                        element.style.animation = '';
-                    }, 10);
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible && !element.classList.contains('visible')) {
+                    element.classList.add('visible');
                 }
             });
         };
         
         window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
         
-        // Animate numbers on load
-        const animateNumbers = () => {
-            const numbers = document.querySelectorAll('.metric-value');
-            
-            numbers.forEach(num => {
-                const finalValue = num.textContent;
-                const isPercentage = finalValue.includes('%');
-                const numericValue = parseInt(finalValue);
-                
-                if (!isNaN(numericValue)) {
-                    let current = 0;
-                    const increment = numericValue / 50;
-                    
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= numericValue) {
-                            current = numericValue;
-                            clearInterval(timer);
-                            num.textContent = finalValue;
-                        } else {
-                            num.textContent = Math.floor(current) + (isPercentage ? '%' : '');
-                        }
-                    }, 20);
-                }
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+        
+        // System nodes interaction
+        const systemNodes = document.querySelectorAll('.system-node');
+        systemNodes.forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                systemNodes.forEach(n => {
+                    if (n !== node) {
+                        n.style.opacity = '0.6';
+                    }
+                });
             });
-        };
-        
-        // Run animations on load
-        window.addEventListener('load', () => {
-            animateNumbers();
-            animateOnScroll();
+            
+            node.addEventListener('mouseleave', () => {
+                systemNodes.forEach(n => {
+                    n.style.opacity = '1';
+                });
+            });
         });
     </script>
 </body>
